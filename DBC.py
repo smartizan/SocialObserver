@@ -33,7 +33,7 @@ class DBC:
         c.execute(sql)
         sql = 'CREATE TABLE IF NOT EXISTS `users` (`uid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `first_name` TEXT, `last_name` TEXT, `sex` TEXT, `country_title` TEXT, `city_title`	TEXT, `bdate`	TEXT);'
         c.execute(sql)
-        sql = 'CREATE TABLE IF NOT EXISTS `users_groups` (`gid`	INTEGER NOT NULL, `uid`	INTEGER NOT NULL, `date` INTEGER, UNIQUE(gid, uid));'
+        sql = 'CREATE TABLE IF NOT EXISTS `users_groups` (`gid`	INTEGER NOT NULL, `uid`	INTEGER NOT NULL, `date` INTEGER, UNIQUE(gid, uid, date));'
         c.execute(sql)
         conn.commit()
         c.close()
@@ -66,7 +66,7 @@ class DBC:
             country_title = userData["country_title"]
             city_title = userData["city_title"]
             bdate = userData["bdate"]
-            res = c.execute('''REPLACE INTO users (uid, first_name, last_name, sex, country_title, city_title, bdate) VALUES(?,?,?,?,?,?,?)''', (uid, first_name, last_name, sex, country_title, city_title, bdate))
+            res = c.execute('''INSERT OR IGNORE INTO users (uid, first_name, last_name, sex, country_title, city_title, bdate) VALUES(?,?,?,?,?,?,?)''', (uid, first_name, last_name, sex, country_title, city_title, bdate))
         c.execute("commit")
         c.close()
         conn.close()
