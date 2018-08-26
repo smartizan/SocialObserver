@@ -18,7 +18,7 @@ class UserExtractop():
         ''' Класс собирает пользователей из группы '''
 
         def __init__(self, gid, group_name):
-                ''' Инициируем класс gis - идентификатор группы VK                 '''
+                ''' Инициируем класс gid - идентификатор группы VK                 '''
                 self.gid = str(gid)
                 self.group_name = group_name
                 self.opt = Options()
