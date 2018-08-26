@@ -1,0 +1,1 @@
+select users_groups.gid, groups.group_name, count(users_groups.uid) from users_groups join groups on users_groups.gid=groups.gid group by users_groups.gid
