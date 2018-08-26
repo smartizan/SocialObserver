@@ -117,8 +117,6 @@ class UserExtractop():
                                 userData["bdate"] = "Не указано"
                         usersPacket.append(userData)
                         linksPacket.append([self.gid, user["id"]])
-                        # ~ self.dbc.saveUser(userData)
-                        # ~ self.dbc.saveUsersGroup(self.gid, userData["uid"])
                 self.dbc.saveUsers(usersPacket)
                 self.dbc.saveUsersGroups(linksPacket)
 
