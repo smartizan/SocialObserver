@@ -13,12 +13,14 @@ import vk
 from Options import Options
 from DBC import DBC
 import time
+from ActivityCatcher import ActivityCatcher
 
 class UserExtractop():
         ''' Класс собирает пользователей из группы '''
 
         def __init__(self, gid, group_name):
                 ''' Инициируем класс gid - идентификатор группы VK                 '''
+                print(gid, group_name)
                 self.gid = str(gid)
                 self.group_name = group_name
                 self.opt = Options()
@@ -50,7 +52,6 @@ class UserExtractop():
                 
         def getUsers(self):
                 """ Получить всех пользователей, gid - id группы """
-                print("Group", self.gid)
                 self.dbc.saveGroup(self.gid, self.group_name)
                 allUsers = []
                 try:
@@ -148,6 +149,21 @@ def main(args):
         ue = UserExtractop(3212465, "Калужский перекресток")
         allUsers = ue.getUsers()
         ue.saveUsers(allUsers)
+        
+        ac = ActivityCatcher(58533958, "Ника ТВ")
+        ac.getPosts()
+        ac = ActivityCatcher(102468629, "Калужские новости")
+        ac.getPosts()
+        ac = ActivityCatcher(145771240, "pressa40.ru")
+        ac.getPosts()
+        ac = ActivityCatcher(48625596, "К24")
+        ac.getPosts()
+        ac = ActivityCatcher(147830639, "МК в Калуге")
+        ac.getPosts()
+        ac = ActivityCatcher(27736909, "Калуга-Поиск")
+        ac.getPosts()
+        ac = ActivityCatcher(3212465, "Калужский перекресток")
+        ac.getPosts()
         return 0
 
 if __name__ == '__main__':

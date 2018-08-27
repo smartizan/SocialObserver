@@ -35,6 +35,17 @@ class DBC:
         c.execute(sql)
         sql = 'CREATE TABLE IF NOT EXISTS `users_groups` (`gid`	INTEGER NOT NULL, `uid`	INTEGER NOT NULL, `date` INTEGER, UNIQUE(gid, uid, date));'
         c.execute(sql)
+        sql = 'CREATE TABLE IF NOT EXISTS `activity` (`gid`	INTEGER NOT NULL, `pid`	INTEGER NOT NULL, `uid`	INTEGER NOT NULL, UNIQUE(gid, pid, uid));'
+        c.execute(sql)
+        conn.commit()
+        c.close()
+        conn.close()
+        
+    def saveActivity(self, gid, pid, uid):
+        ''' Сохранить реакцию пользователя '''
+        conn = sqlite3.connect(self.db_puth)
+        c = conn.cursor()
+        res = c.execute('''INSERT OR IGNORE INTO activity (gid, pid, uid) VALUES(?,?,?)''', (gid, pid, uid))
         conn.commit()
         c.close()
         conn.close()
