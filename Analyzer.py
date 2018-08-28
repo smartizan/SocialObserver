@@ -23,6 +23,16 @@
     Самые активные пользователи
     SELECT COUNT(activity.pid) AS c, users.first_name, users.last_name  FROM activity JOIN users ON activity.uid=users.uid GROUP BY activity.uid ORDER BY c DESC
     
+    Без разбивки по группам
+    DROP TABLE IF EXISTS users_prev;
+	DROP TABLE IF EXISTS users_now;
+	CREATE TABLE users_prev AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date='2018-08-27';
+	CREATE TABLE users_now AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date='2018-08-28';
+	--- Новые
+	SELECT * FROM users_now LEFT JOIN users_prev ON users_prev.uid = users_now.uid  WHERE users_prev.uid IS NULL;
+	--- Ушедшие
+	SELECT * FROM users_prev LEFT JOIN users_now ON users_now.uid = users_prev.uid WHERE users_now.uid IS NULL;
+    
     Что будет дальше?
     Отлавливать добавившихся и ушедших пользователей, заносить их в список для формирования рекламы в ВК. 
     Проверять целевую группу и тех, кто в нее вступил, удалять из списка для показа рекламы. 
