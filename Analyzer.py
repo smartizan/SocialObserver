@@ -20,6 +20,9 @@
     А это получиьт ушедших (???)
     SELECT * FROM nika_prev LEFT JOIN nika_now ON nika_now.uid = nika_prev.uid WHERE nika_now.uid IS NULL
     
+    Самые активные пользователи
+    SELECT COUNT(activity.pid) AS c, users.first_name, users.last_name  FROM activity JOIN users ON activity.uid=users.uid GROUP BY activity.uid ORDER BY c DESC
+    
     Что будет дальше?
     Отлавливать добавившихся и ушедших пользователей, заносить их в список для формирования рекламы в ВК. 
     Проверять целевую группу и тех, кто в нее вступил, удалять из списка для показа рекламы. 
