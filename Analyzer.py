@@ -49,18 +49,41 @@ class Analyzer:
 		self.dbc = DBC()
 		
 	def getNewUsers(self):
+		newUsers = []
 		rows = self.dbc.getNewUsers()
-		print(len(rows))
+		print('Новые участники', len(rows))
+		for r in rows:
+			# ~ print(r)
+			newUser = {}
+			newUser['gid'] = r[0]
+			newUser['gr_title'] = r[1]
+			newUser['us_id'] = r[2]
+			newUser['add_date'] = r[3]
+			newUsers.append(newUser)
+			print(newUser)
+		return newUsers
+			
 		
 	def getLostUsers(self):
+		lostUsers = []
 		rows = self.dbc.getLostUsers()
-		print(len(rows))
+		print('Потерянные участники', len(rows))
+		for r in rows:
+			# ~ print(r)
+			lostUser = {}
+			lostUser['gid'] = r[0]
+			lostUser['gr_title'] = r[1]
+			lostUser['us_id'] = r[2]
+			lostUser['lost_date'] = r[3]
+			lostUsers.append(lostUser)
+			print(lostUser)
+		return lostUsers
 
 
 def main(args):
 	anlz = Analyzer()
-	anlz.getNewUsers()
-	anlz.getLostUsers()
+	newUsers = anlz.getNewUsers()
+	lostUsers = anlz.getLostUsers()
 	return 0
 
 if __name__ == '__main__':
