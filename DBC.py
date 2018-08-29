@@ -41,6 +41,66 @@ class DBC:
         c.close()
         conn.close()
         
+    def getNewUsers(self):
+        ''' Получить новых пользователей '''
+        now = datetime.datetime.now()
+        now_date = now.strftime("%Y-%m-%d")
+        prev = datetime.date.today()-datetime.timedelta(1)
+        prev_date = prev.strftime("%Y-%m-%d")
+        conn = sqlite3.connect(self.db_puth)
+        c = conn.cursor()
+        sql = 'DROP TABLE IF EXISTS users_prev;'
+        c.execute(sql)
+        sql = 'DROP TABLE IF EXISTS users_now;'
+        c.execute(sql)
+        sql = 'CREATE TABLE users_prev AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date=\'' + now_date + '\';'
+        c.execute(sql)
+        sql = 'CREATE TABLE users_now AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date=\'' + prev_date + '\';'
+        c.execute(sql)
+        conn.commit()
+        # Новые пользователи
+        sql='SELECT * FROM users_now LEFT JOIN users_prev ON users_prev.uid = users_now.uid  WHERE users_prev.uid IS NULL;'
+        c.execute(sql)
+        rows = c.fetchall()
+        sql = 'DROP TABLE IF EXISTS users_prev;'
+        c.execute(sql)
+        sql = 'DROP TABLE IF EXISTS users_now;'
+        c.execute(sql)
+        conn.commit()
+        c.close()
+        conn.close()
+        return rows
+        
+    def getLostUsers(self):
+        ''' Получить потерянных пользователей '''
+        now = datetime.datetime.now()
+        now_date = now.strftime("%Y-%m-%d")
+        prev = datetime.date.today()-datetime.timedelta(1)
+        prev_date = prev.strftime("%Y-%m-%d")
+        conn = sqlite3.connect(self.db_puth)
+        c = conn.cursor()
+        sql = 'DROP TABLE IF EXISTS users_prev;'
+        c.execute(sql)
+        sql = 'DROP TABLE IF EXISTS users_now;'
+        c.execute(sql)
+        sql = 'CREATE TABLE users_prev AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date=\'' + now_date + '\';'
+        c.execute(sql)
+        sql = 'CREATE TABLE users_now AS SELECT users_groups.gid, groups.group_name, users_groups.uid, users_groups.date FROM users_groups JOIN groups ON users_groups.gid=groups.gid WHERE users_groups.date=\'' + prev_date + '\';'
+        c.execute(sql)
+        conn.commit()
+        # Новые пользователи
+        sql='SELECT * FROM users_prev LEFT JOIN users_now ON users_now.uid = users_prev.uid WHERE users_now.uid IS NULL;'
+        c.execute(sql)
+        rows = c.fetchall()
+        sql = 'DROP TABLE IF EXISTS users_prev;'
+        c.execute(sql)
+        sql = 'DROP TABLE IF EXISTS users_now;'
+        c.execute(sql)
+        conn.commit()
+        c.close()
+        conn.close()
+        return rows
+        
     def saveActivity(self, gid, pid, uid):
         ''' Сохранить реакцию пользователя '''
         conn = sqlite3.connect(self.db_puth)
