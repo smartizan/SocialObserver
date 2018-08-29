@@ -41,9 +41,27 @@
     Следить в группах за темм, кто сколько лайкает и комментит, чтобы определить самых активных пользователей. 
 '''
 
+from DBC import DBC
+
+class Analyzer:
+	
+	def __init__(self):
+		self.dbc = DBC()
+		
+	def getNewUsers(self):
+		rows = self.dbc.getNewUsers()
+		print(len(rows))
+		
+	def getLostUsers(self):
+		rows = self.dbc.getLostUsers()
+		print(len(rows))
+
 
 def main(args):
-    return 0
+	anlz = Analyzer()
+	anlz.getNewUsers()
+	anlz.getLostUsers()
+	return 0
 
 if __name__ == '__main__':
     import sys
