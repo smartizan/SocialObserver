@@ -12,7 +12,7 @@ from Options import Options
 from DBC import DBC
 import time
 
-class ActivityCatcher:
+class VKActivityCatcher:
     
     def __init__(self, gid, group_name):
         ''' Инициируем класс gid - идентификатор группы VK                 '''
@@ -83,20 +83,20 @@ class ActivityCatcher:
             pass
 
 def main(args):
-    ac = ActivityCatcher(58533958, "Ника ТВ")
-    ac.getPosts()
-    ac = ActivityCatcher(102468629, "Калужские новости")
-    ac.getPosts()
-    ac = ActivityCatcher(145771240, "pressa40.ru")
-    ac.getPosts()
-    ac = ActivityCatcher(48625596, "К24")
-    ac.getPosts()
-    ac = ActivityCatcher(147830639, "МК в Калуге")
-    ac.getPosts()
-    ac = ActivityCatcher(27736909, "Калуга-Поиск")
-    ac.getPosts()
-    ac = ActivityCatcher(3212465, "Калужский перекресток")
-    ac.getPosts()
+    vkac = VKActivityCatcher(58533958, "Ника ТВ")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(102468629, "Калужские новости")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(145771240, "pressa40.ru")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(48625596, "К24")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(147830639, "МК в Калуге")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(27736909, "Калуга-Поиск")
+    vkac.getPosts()
+    vkac = VKActivityCatcher(3212465, "Калужский перекресток")
+    vkac.getPosts()
     return 0
 
 if __name__ == '__main__':

@@ -13,9 +13,9 @@ import vk
 from Options import Options
 from DBC import DBC
 import time
-from ActivityCatcher import ActivityCatcher
+from VKActivityCatcher import VKActivityCatcher
 
-class UserExtractop():
+class VKUserExtractop():
         ''' Класс собирает пользователей из группы '''
 
         def __init__(self, gid, group_name):
@@ -122,48 +122,48 @@ class UserExtractop():
                 self.dbc.saveUsersGroups(linksPacket)
 
 def main(args):
-        ue = UserExtractop(58533958, "Ника ТВ")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(58533958, "Ника ТВ")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(102468629, "Калужские новости")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(102468629, "Калужские новости")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(145771240, "pressa40.ru")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(145771240, "pressa40.ru")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(48625596, "К24")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(48625596, "К24")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(147830639, "МК в Калуге")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(147830639, "МК в Калуге")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(27736909, "Калуга-Поиск")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(27736909, "Калуга-Поиск")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ue = UserExtractop(3212465, "Калужский перекресток")
-        allUsers = ue.getUsers()
-        ue.saveUsers(allUsers)
+        vkue = VKUserExtractop(3212465, "Калужский перекресток")
+        allUsers = vkue.getUsers()
+        vkue.saveUsers(allUsers)
         
-        ac = ActivityCatcher(58533958, "Ника ТВ")
-        ac.getPosts()
-        ac = ActivityCatcher(102468629, "Калужские новости")
-        ac.getPosts()
-        ac = ActivityCatcher(145771240, "pressa40.ru")
-        ac.getPosts()
-        ac = ActivityCatcher(48625596, "К24")
-        ac.getPosts()
-        ac = ActivityCatcher(147830639, "МК в Калуге")
-        ac.getPosts()
-        ac = ActivityCatcher(27736909, "Калуга-Поиск")
-        ac.getPosts()
-        ac = ActivityCatcher(3212465, "Калужский перекресток")
-        ac.getPosts()
+        vkac = VKActivityCatcher(58533958, "Ника ТВ")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(102468629, "Калужские новости")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(145771240, "pressa40.ru")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(48625596, "К24")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(147830639, "МК в Калуге")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(27736909, "Калуга-Поиск")
+        vkac.getPosts()
+        vkac = VKActivityCatcher(3212465, "Калужский перекресток")
+        vkac.getPosts()
         return 0
 
 if __name__ == '__main__':
