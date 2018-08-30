@@ -8,7 +8,7 @@
 #  
 
 import vk
-from Options import Options
+from VKOptions import VKOptions
 from DBC import DBC
 import time
 
@@ -19,7 +19,7 @@ class VKActivityCatcher:
         # ~ print(gid, group_name)
         self.gid = str(gid)
         self.group_name = group_name
-        self.opt = Options()
+        self.opt = VKOptions()
         session = vk.Session(access_token=self.opt.access_token)
         self.vk_api = vk.API(session, lang='ru')
         self.dbc = DBC()

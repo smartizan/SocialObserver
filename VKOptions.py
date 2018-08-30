@@ -49,7 +49,7 @@ LiquidMagne7
 ***********************************
 """
 
-class Options:
+class VKOptions:
 	
 	def __init__(self):
 		self.APP_ID = '5484311'

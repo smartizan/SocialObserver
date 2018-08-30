@@ -10,12 +10,12 @@
 #  
 
 import vk
-from Options import Options
+from VKOptions import VKOptions
 from DBC import DBC
 import time
 from VKActivityCatcher import VKActivityCatcher
 
-class VKUserExtractop():
+class VKUserExtractor():
         ''' Класс собирает пользователей из группы '''
 
         def __init__(self, gid, group_name):
@@ -23,7 +23,7 @@ class VKUserExtractop():
                 print(gid, group_name)
                 self.gid = str(gid)
                 self.group_name = group_name
-                self.opt = Options()
+                self.opt = VKOptions()
                 session = vk.Session(access_token=self.opt.access_token)
                 self.vk_api = vk.API(session, lang='ru')
                 self.dbc = DBC()
@@ -122,31 +122,31 @@ class VKUserExtractop():
                 self.dbc.saveUsersGroups(linksPacket)
 
 def main(args):
-        vkue = VKUserExtractop(58533958, "Ника ТВ")
+        vkue = VKUserExtractor(58533958, "Ника ТВ")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(102468629, "Калужские новости")
+        vkue = VKUserExtractor(102468629, "Калужские новости")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(145771240, "pressa40.ru")
+        vkue = VKUserExtractor(145771240, "pressa40.ru")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(48625596, "К24")
+        vkue = VKUserExtractor(48625596, "К24")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(147830639, "МК в Калуге")
+        vkue = VKUserExtractor(147830639, "МК в Калуге")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(27736909, "Калуга-Поиск")
+        vkue = VKUserExtractor(27736909, "Калуга-Поиск")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
-        vkue = VKUserExtractop(3212465, "Калужский перекресток")
+        vkue = VKUserExtractor(3212465, "Калужский перекресток")
         allUsers = vkue.getUsers()
         vkue.saveUsers(allUsers)
         
