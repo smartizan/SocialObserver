@@ -17,7 +17,7 @@ class VKDBC:
     
 	def __init__(self):
 		self.set_directory()
-		self.db_puth = os.path.join(os.getcwd(), 'vkdata', 'main.db')
+		self.db_puth = os.path.join(os.getcwd(), 'data', 'vk.db')
 		self.createTables()
 		
 	def set_directory(self):
@@ -213,9 +213,9 @@ class VKDBC:
 		return user
         
 def main(args):
-    dbc = DBC()
-    # ~ user = dbc.getUser(1)
-    dbc.getTwoDays()
+    vkdbc = VKDBC()
+    # ~ user = vkdbc.getUser(1)
+    vkdbc.getTwoDays()
     return 0
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@
 
 import vk
 from VKOptions import VKOptions
-from DBC import DBC
+from VKDBC import VKDBC
 import time
 from VKActivityCatcher import VKActivityCatcher
 
@@ -26,7 +26,7 @@ class VKUserExtractor():
                 self.opt = VKOptions()
                 session = vk.Session(access_token=self.opt.access_token)
                 self.vk_api = vk.API(session, lang='ru')
-                self.dbc = DBC()
+                self.dbc = VKDBC()
                 
         def __showUsers(self, users):
                 ''' Отобразить пользователей '''

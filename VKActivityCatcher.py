@@ -9,7 +9,7 @@
 
 import vk
 from VKOptions import VKOptions
-from DBC import DBC
+from VKDBC import VKDBC
 import time
 
 class VKActivityCatcher:
@@ -22,7 +22,7 @@ class VKActivityCatcher:
         self.opt = VKOptions()
         session = vk.Session(access_token=self.opt.access_token)
         self.vk_api = vk.API(session, lang='ru')
-        self.dbc = DBC()
+        self.dbc = VKDBC()
         
     def getPosts(self):
         ''' Получить посты. Пока будем брать 100 последних '''

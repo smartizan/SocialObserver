@@ -41,12 +41,12 @@
     Следить в группах за темм, кто сколько лайкает и комментит, чтобы определить самых активных пользователей. 
 '''
 
-from DBC import DBC
+from VKDBC import VKDBC
 
-class Analyzer:
+class VKAnalyzer:
 	
 	def __init__(self):
-		self.dbc = DBC()
+		self.dbc = VKDBC()
 		
 	def getNewUsers(self):
 		''' Пользователи, добавившиеся в исследуемые группы '''
@@ -103,12 +103,12 @@ class Analyzer:
 		return False 
 
 def main(args):
-	anlz = Analyzer()
-	newUsers = anlz.getNewUsers()
+	vkanlz = VKAnalyzer()
+	newUsers = vkanlz.getNewUsers()
 	print(len(newUsers))
-	lostUsers = anlz.getLostUsers()
+	lostUsers = vkanlz.getLostUsers()
 	print(len(lostUsers))
-	activeUsers = anlz.getMostActive()
+	activeUsers = vkanlz.getMostActive()
 	print(len(activeUsers))
 	return 0
 
