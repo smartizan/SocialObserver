@@ -49,9 +49,10 @@ class Analyzer:
 		self.dbc = DBC()
 		
 	def getNewUsers(self):
+		''' Пользователи, добавившиеся в исследуемые группы '''
 		newUsers = []
 		rows = self.dbc.getNewUsers()
-		print('Новые участники', len(rows))
+		print('Новые участники')
 		for r in rows:
 			# ~ print(r)
 			newUser = {}
@@ -59,15 +60,17 @@ class Analyzer:
 			newUser['gr_title'] = r[1]
 			newUser['us_id'] = r[2]
 			newUser['add_date'] = r[3]
-			newUsers.append(newUser)
-			print(newUser)
+			if not self.inTargetGroup(newUser['us_id']):
+				newUsers.append(newUser)
+				print(newUser)
 		return newUsers
 			
 		
 	def getLostUsers(self):
+		''' Пользователи, покинувшие исследуемые группы '''
 		lostUsers = []
 		rows = self.dbc.getLostUsers()
-		print('Потерянные участники', len(rows))
+		print('Потерянные участники')
 		for r in rows:
 			# ~ print(r)
 			lostUser = {}
@@ -75,15 +78,38 @@ class Analyzer:
 			lostUser['gr_title'] = r[1]
 			lostUser['us_id'] = r[2]
 			lostUser['lost_date'] = r[3]
-			lostUsers.append(lostUser)
-			print(lostUser)
+			if not self.inTargetGroup(lostUser['us_id']):
+				lostUsers.append(lostUser)
+				print(lostUser)
 		return lostUsers
-
+		
+	def getMostActive(self):
+		''' Находим самых активных пользователей '''
+		activeUsers = []
+		rows = self.dbc.getMostActive()
+		for r in rows:
+			user = {}
+			user['us_id'] = r[1]
+			user['first_name'] = r[2]
+			user['last_name'] = r[3]
+			if (not self.inTargetGroup(user['us_id'])) and (r[0] >= 10):
+				activeUsers.append(user)
+				print(r)
+		return activeUsers
+		
+	def inTargetGroup(self, uid):
+		''' проверяем, не вступил ли пользователь в целевую группу '''
+		# СДЕЛАТЬ НОРМАЛЬНУЮ ПРОВЕРКУ
+		return False 
 
 def main(args):
 	anlz = Analyzer()
 	newUsers = anlz.getNewUsers()
+	print(len(newUsers))
 	lostUsers = anlz.getLostUsers()
+	print(len(lostUsers))
+	activeUsers = anlz.getMostActive()
+	print(len(activeUsers))
 	return 0
 
 if __name__ == '__main__':
