@@ -37,7 +37,7 @@ class VKActivityCatcher:
                     self.getCommenters(self.gid, item['id'])
                 if item['likes']['count'] > 0:
                     self.getLikes(self.gid, item['id'], item['post_type'])
-                time.sleep(3)
+                time.sleep(5)
                 print("\n")
         except vk.exceptions.VkAPIError:
             #pass
