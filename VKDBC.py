@@ -59,7 +59,7 @@ class VKDBC:
 		# ~ prev = datetime.date.today()-datetime.timedelta(1)
 		# ~ prev_date = prev.strftime("%Y-%m-%d")
 		tdays = self.getTwoDays()
-		# ~ print(tdays)
+		print(tdays)
 		now_date = tdays[0]
 		prev_date = tdays[1]
 		conn = sqlite3.connect(self.db_puth)
@@ -94,7 +94,7 @@ class VKDBC:
 		# ~ prev_date = prev.strftime("%Y-%m-%d")
 		conn = sqlite3.connect(self.db_puth)
 		tdays = self.getTwoDays()
-		# ~ print(tdays)
+		print(tdays)
 		now_date = tdays[0]
 		prev_date = tdays[1]
 		c = conn.cursor()
