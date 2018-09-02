@@ -13,9 +13,18 @@ from VKActivityCatcher import VKActivityCatcher
 def main(args):
     vkue = VKUserExtractor()
     vkue.process()
-    
+
     vkac = VKActivityCatcher()
     vkac.process()
+
+    vkanlz = VKAnalyzer()
+    newUsers = vkanlz.getNewUsers()
+    print(len(newUsers))
+    lostUsers = vkanlz.getLostUsers()
+    print(len(lostUsers))
+    activeUsers = vkanlz.getMostActive()
+    print(len(activeUsers))
+    
     return 0
 
 if __name__ == '__main__':
