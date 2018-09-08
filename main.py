@@ -8,7 +8,7 @@
 
 from VKUserExtractor import VKUserExtractor
 from VKActivityCatcher import VKActivityCatcher
-
+from VKAnalyzer import VKAnalyzer
 
 def main(args):
     vkue = VKUserExtractor()
@@ -20,8 +20,10 @@ def main(args):
     vkanlz = VKAnalyzer()
     newUsers = vkanlz.getNewUsers()
     print(len(newUsers))
+    
     lostUsers = vkanlz.getLostUsers()
     print(len(lostUsers))
+    
     activeUsers = vkanlz.getMostActive()
     print(len(activeUsers))
     
